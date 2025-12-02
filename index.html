@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cirnoTime</title>
+    <link rel="icon" type="photo" href="photo/H-cirno.jpg">
+
+    <link rel="stylesheet" href="css/anniu-1.css">
+    <link rel="stylesheet" href="css/K-Rtest.css">
+    <link rel="stylesheet" href="css/time.css">
+    <link rel="stylesheet" href="css/patchouli.css">
+    <link rel="stylesheet" href="css/Tkuanj.css">
+    <link rel="stylesheet" href="css/log.css">
+    <link rel="stylesheet" href="css/music-player.css">
+    <link rel="stylesheet" href="css/news-frame.css">
+    <link rel="stylesheet" href="css/custom-image.css">
+
+    <!--左下角gif调试框-->
+    <style>
+        /* 确保台词强制横向显示 */
+        #dialogue-content {
+            writing-mode: horizontal-tb !important;
+            text-orientation: mixed !important;
+            direction: ltr !important;
+            unicode-bidi: bidi-override !important;
+            display: block !important;
+            text-align: center !important;
+        }
+
+        /* 调试样式 */
+        /* #gif-container {
+            border: 2px solid red !important;
+        }
+        #main-glass-frame {
+            border: 2px solid blue !important;
+            min-height: 500px !important;
+        }
+        .dialogue-content {
+            border: 1px solid yellow !important;
+            writing-mode: horizontal-tb !important;
+            text-orientation: mixed !important;
+        } */
+    </style>
+    
+</head>
+<body>
+    <!-- 启动页面 -->
+    <div class="splash-screen" id="splash-screen">
+        <div class="splash-content">
+            <!-- 将雪花图标替换为图片 -->
+            <div class="title-with-icon">
+                <img src="photo/H-cirno.jpg" alt="Cirno" class="title-icon">
+                <h1 class="splash-title">CirnoTime</h1>
+            </div>
+            <p class="splash-subtitle">欢迎来到我的个人空间</p>
+            <button class="enter-button" id="enter-button">
+                进入网站 
+            </button>
+        </div>
+    </div>
+
+<!-- 主内容容器 -->
+<div id="main-content" style="display: none;">
+    <!-- 日志系统 -->
+    <div class="log-system">
+        <div class="log-button" id="log-button">📙</div>
+        <div class="log-panel" id="log-panel">
+            <div class="log-header">
+                <h3>网站编辑日志</h3>
+                <button class="close-log" id="close-log">×</button>
+            </div>
+            <div class="log-content">
+                <div class="log-input-area">
+                    <textarea id="log-input" placeholder="记录你的网站编辑内容..."></textarea>
+                    <button id="add-log">添加记录</button>
+                </div>
+                <div class="log-list" id="log-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 暗色模式切换按钮 -->
+    <div class="dark-mode-toggle" id="dark-mode-toggle">
+        <div class="dark-mode-button" id="dark-mode-button">
+            <span class="dark-mode-icon">🌙</span>
+        </div>
+        <div class="dark-mode-ripple"></div>
+    </div>
+
+    <!-- 第一个透明框架（主内容） -->
+    <div class="glass-frame">
+        <!-- 天气 -->
+        <div class="weather-widget" onclick="window.open('https://www.msn.cn/zh-cn/weather', '_blank')" style="cursor: pointer;">
+            <div class="weather-info">
+                <div class="weather-icon" id="weather-icon">⏳</div>
+                <div class="weather-details">
+                    <div class="weather-temp" id="weather-temp">--°C</div>
+                    <div class="weather-desc" id="weather-desc">获取中...</div>
+                    <div class="weather-location" id="weather-location">--</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 时间显示 -->
+        <div class="time-display">
+            <div class="time" id="current-time">00:00:00</div>
+            <div class="date" id="current-date">0000年00月00日 星期X</div>
+        </div>
+
+        <!-- 按钮容器 -->
+        <div class="button-container">
+            <a href="https://www.minesweeper.cn/" target="_blank" class="icon-with-text">
+                <div class="image-button"><img src="photo/mQ.jpg" alt="扫雷"></div>
+                <span class="icon-text">扫雷游戏</span>
+            </a>
+
+            <a href="https://www.baidu.com" target="_blank" class="icon-with-text">
+                <div class="image-button"><img src="photo/百度.jpg" alt="百度"></div>
+                <span class="icon-text">百度</span>
+            </a>
+
+            <a href="https://www.bilibili.com/" target="_blank" class="icon-with-text">
+                <div class="image-button"><img src="photo/blbl.jpg" alt="哔哩哔哩"></div>
+                <span class="icon-text">哔哩哔哩</span>
+            </a>
+
+            <a href="https://www.deepseek.com/" target="_blank" class="icon-with-text">
+                <div class="image-button"><img src="photo/Deepseek.jpg" alt="Deepseek"></div>
+                <span class="icon-text">Deepseek</span>
+            </a>
+
+            <a href="https://i.chaoxing.com/base?t=1763543986662" target="_blank" class="icon-with-text">
+                <div class="image-button"><img src="photo/xxtong.jpg" alt="学习通"></div>
+                <span class="icon-text">学习通</span>
+            </a>
+
+            <!-- 用户自定义图标容器 -->
+            <div class="user-icons-container" id="user-icons-container">
+                <!-- 用户添加的图标将在这里显示 -->
+            </div>
+        </div>
+
+        <!-- 右上角添加按钮 -->
+        <div class="floating-add-btn" id="floating-add-btn">
+            <div class="add-circle">
+                <span class="add-plus">+</span>
+            </div>
+            <div class="add-tooltip">添加图标</div>
+        </div>
+
+        <!-- 添加图标模态框 -->
+        <div class="modal-overlay" id="add-icon-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>添加新图标</h3>
+                    <button class="close-modal" id="close-modal">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="icon-name">图标名称:</label>
+                        <input type="text" id="icon-name" placeholder="例如：GitHub" maxlength="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="icon-url">图标链接:</label>
+                        <input type="text" id="icon-url" placeholder="https://example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="icon-image">图标图片URL:</label>
+                        <input type="text" id="icon-image" placeholder="https://example.com/icon.png">
+                        <small>支持在线图片链接</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="cancel-btn" id="cancel-add">取消</button>
+                    <button class="confirm-btn" id="confirm-add">确认添加</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 左下角gif - 添加ID以便调试 -->
+        <div class="left-corner-gif" id="gif-container">
+            <img src="photo/QCF.gif" alt="gif" id="cirno-gif">
+            <!-- 台词显示区域 -->
+            <div class="dialogue-box" id="dialogue-box">
+                <div class="dialogue-content" id="dialogue-content"></div>
+            </div>
+        </div>
+
+        <!-- 右下角文字 -->
+        <div class="dynamic-text">
+            我们生活的日常，每天都是奇迹——
+        </div>
+    </div>
+
+    <!-- 底部容器：左侧列（音乐播放器 + 新框架） + 新闻框架 -->
+    <div class="bottom-container">
+        <!-- 左侧列：音乐播放器和新框架 -->
+        <div class="left-column">
+            <!-- 音乐播放器框架 -->
+            <div class="music-player-container">
+                <div class="music-player-frame">
+                    <div class="music-header">
+                        <h3>🎵 音乐播放器</h3>
+                        <button class="music-toggle" id="music-toggle">▶️</button>
+                    </div>
+                    <div class="music-controls">
+                        <div class="song-info">
+                            <div class="song-title" id="song-title">未选择歌曲</div>
+                            <div class="song-artist" id="song-artist">--</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="progress-bar">
+                                <div class="progress" id="progress"></div>
+                            </div>
+                            <div class="time-display-music">
+                                <span id="current-time-music">0:00</span> / <span id="total-time-music">0:00</span>
+                            </div>
+                        </div>
+                        <div class="control-buttons">
+                            <button class="control-btn" id="prev-btn">⏮️</button>
+                            <button class="control-btn play-btn" id="play-btn">▶️</button>
+                            <button class="control-btn" id="next-btn">⏭️</button>
+                            <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="50">
+                            <button class="control-btn" id="playlist-btn">📋</button>
+                        </div>
+                        <div class="file-upload-area">
+                            <input type="file" id="audio-file" accept="audio/*" class="hidden-file-input">
+                            <button class="upload-btn" id="upload-btn">上传音乐</button>
+                        </div>
+                    </div>
+                    <div class="playlist" id="playlist">
+                        <div class="playlist-header">
+                            <h4>播放列表</h4>
+                            <button class="close-playlist" id="close-playlist">×</button>
+                        </div>
+                        <div class="playlist-items" id="playlist-items">
+                            <div class="playlist-empty">暂无歌曲，请上传音乐文件</div>
+                        </div>
+                    </div>
+                    <!-- 音乐播放器的右下角文字 -->
+                    <div class="dynamic-text">
+                        给木~给木~给木压力带=w=
+                    </div>
+                </div>
+            </div>
+
+            <!-- 新框架 -->
+            <div class="new-frame-container">
+                <div class="new-frame">
+                    <div class="new-frame-header">
+                        <h3>🌟 作者留言板</h3>
+                    </div>
+                    <div class="new-frame-content">
+                        <div class="new-frame-placeholder">
+                            没救了，本来这块地要来放超链接的，现在怎么弄都没办法了只剩一个边框了<br>
+                            TWT。对了技术力大部分代码由ai提供=w=
+                            <p>
+                                且不定期更新，bug可以在留言板通知。
+                            </p>
+                        </div>
+                    </div>
+                    <!-- 新框架的右下角文字 -->
+                    <div class="dynamic-text">
+                        光啊~ ✨
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 新闻框架 -->
+        <div class="news-container">
+            <div class="news-frame">
+                <div class="news-header">
+                    <h3>📰 今日头号新闻</h3>
+                    <button class="news-refresh" id="news-refresh">🔄</button>
+                </div>
+                <div class="news-content" id="news-content">
+                    <!-- 新闻内容将通过JS动态加载 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- 图片区域 -->
+    <div class="custom-image-container">
+        <div class="custom-image-frame">
+            <div class="custom-image-header">
+                <h3>🖼️ 放置喜欢的图片</h3>
+                <button class="custom-image-upload-btn" id="custom-image-upload-btn">上传图片</button>
+            </div>
+            <div class="custom-image-content" id="custom-image-content">
+                <div class="custom-image-placeholder">点击上传或拖拽图片到此区域</div>
+                <input type="file" id="custom-image-input" accept="image/*" class="hidden-file-input" multiple>
+            </div>
+        </div>
+    </div>
+
+     <!-- 留言板 - 移动到与播放器和新闻框架平级 -->
+    <div class="message-board-container">
+        <div class="message-board">
+            <div class="message-header">
+                <h3>💬 留言板</h3>
+                <button class="add-message-btn" id="add-message-btn">+</button>
+            </div>
+            <div class="messages-container" id="messages-container">
+                <div class="message-item">
+                    <div class="message-content">欢迎留言！这是一个示例留言。</div>
+                    <div class="message-time">刚刚</div>
+                </div>
+            </div>
+            <div class="message-input-area">
+                <textarea id="message-input" placeholder="写下你的留言..."></textarea>
+                <button id="submit-message">发送</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 音频元素 -->
+    <audio id="audio-player" preload="metadata"></audio>
+</div>
+
+    <!-- JS 文件 -->
+    <script src="js/weather.js"></script>
+    <script src="js/log.js"></script>
+    <script src="js/music-player.js"></script>
+    <script src="js/news.js"></script>
+    <script src="js/message-board.js"></script>
+    <script src="js/custom-image.js"></script>
+    <script src="js/new-frame.js"></script>
+    <script src="js/dark-mode.js"></script>
+    <script src="js/splash-screen.js"></script>
+    <script src="js/QCF-dialogue.js"></script>
+    <script src="js/custom-icons.js"></script>
+    
+</body>
+</html>

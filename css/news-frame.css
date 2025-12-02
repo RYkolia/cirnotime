@@ -1,0 +1,1209 @@
+/* 底部容器布局 */
+.bottom-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 85%;
+    max-width: 1200px;
+    margin: 20px auto 0;
+    gap: 40px; /* 增加间距从20px到40px */
+    position: relative;
+}
+
+/* 音乐播放器容器 */
+.music-player-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-right: 10px; /* 添加右边距 */
+}
+
+/* 新闻容器 */
+.news-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-left: 10px; /* 添加左边距 */
+}
+
+/* 音乐播放器框架样式 */
+.music-player-frame {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px; /* 为动态文字留出空间 */
+}
+
+/* 新闻框架样式 */
+.news-frame {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+}
+
+/* 音乐播放器框架光效 */
+.music-player-frame::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    transform: rotate(30deg);
+    pointer-events: none;
+}
+
+.music-player-frame::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.4),
+        rgba(255, 255, 255, 0.1)
+    );
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* 新闻框架光效 */
+.news-frame::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    transform: rotate(30deg);
+    pointer-events: none;
+}
+
+.news-frame::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.4),
+        rgba(255, 255, 255, 0.1)
+    );
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* 音乐播放器头部 */
+.music-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.music-header h3 {
+    margin: 0;
+    color: rgb(202, 98, 190);
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.music-toggle {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    color: rgb(202, 98, 190);
+}
+
+.music-toggle:hover {
+    background: rgba(202, 98, 190, 0.2);
+}
+
+/* 新闻头部 */
+.news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.news-header h3 {
+    margin: 0;
+    color: rgb(202, 98, 190);
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.news-refresh {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    color: rgb(202, 98, 190);
+}
+
+.news-refresh:hover {
+    background: rgba(202, 98, 190, 0.2);
+    transform: rotate(180deg);
+}
+
+/* 音乐控制区域 */
+.music-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    z-index: 10;
+}
+
+/* 歌曲信息 */
+.song-info {
+    text-align: center;
+}
+
+.song-title {
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 3px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.song-artist {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 进度条容器 */
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+}
+
+.progress {
+    height: 100%;
+    background: rgb(202, 98, 190);
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.1s ease;
+    box-shadow: 0 0 8px rgba(202, 98, 190, 0.5);
+}
+
+.time-display-music {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.75rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 控制按钮区域 */
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.play-btn {
+    background: rgba(202, 98, 190, 0.3);
+    border-color: rgba(202, 98, 190, 0.5);
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+    box-shadow: 0 3px 12px rgba(202, 98, 190, 0.3);
+}
+
+.play-btn:hover {
+    background: rgba(202, 98, 190, 0.5);
+    box-shadow: 0 4px 15px rgba(202, 98, 190, 0.4);
+}
+
+/* 音量控制 */
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.volume-slider {
+    width: 70px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: rgb(202, 98, 190);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 4px rgba(202, 98, 190, 0.5);
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: rgb(202, 98, 190);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 4px rgba(202, 98, 190, 0.5);
+}
+
+/* 文件上传区域 */
+.file-upload-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.upload-btn {
+    background: rgba(202, 98, 190, 0.3);
+    border: 1px solid rgba(202, 98, 190, 0.5);
+    border-radius: 18px;
+    color: white;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Microsoft YaHei', sans-serif;
+    font-size: 0.85rem;
+    backdrop-filter: blur(10px);
+}
+
+.upload-btn:hover {
+    background: rgba(202, 98, 190, 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 12px rgba(202, 98, 190, 0.3);
+}
+
+.hidden-file-input {
+    display: none;
+}
+
+/* 播放列表 */
+.playlist {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    width: 280px;
+    max-height: 300px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 100;
+    margin-bottom: 12px;
+}
+
+.playlist.active {
+    display: flex;
+}
+
+.playlist-header {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.playlist-header h4 {
+    margin: 0;
+    color: rgb(202, 98, 190);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.close-playlist {
+    background: none;
+    border: none;
+    color: rgb(202, 98, 190);
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-playlist:hover {
+    background: rgba(202, 98, 190, 0.2);
+}
+
+.playlist-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px;
+}
+
+.playlist-item {
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 4px;
+    border-left: 2px solid transparent;
+}
+
+.playlist-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.playlist-item.active {
+    background: rgba(202, 98, 190, 0.2);
+    border-left: 2px solid rgb(202, 98, 190);
+}
+
+.playlist-item-title {
+    color: white;
+    font-size: 0.85rem;
+    margin-bottom: 2px;
+    font-weight: 500;
+}
+
+.playlist-item-artist {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
+}
+
+.playlist-empty {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    padding: 15px;
+}
+
+/* 新闻内容 */
+.news-content {
+    position: relative;
+    z-index: 10;
+    color: rgb(202, 98, 190);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 新闻项 */
+.news-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 12px;
+    border-left: 3px solid rgba(202, 98, 190, 0.5);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.news-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(5px);
+}
+
+.news-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+    line-height: 1.4;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.news-source {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    color: rgba(202, 98, 190, 0.7);
+}
+
+.news-time {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    color: rgba(202, 98, 190, 0.6);
+}
+
+/* 加载状态 */
+.news-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 10px;
+}
+
+.loading-spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(202, 98, 190, 0.3);
+    border-top: 3px solid rgb(202, 98, 190);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: rgb(202, 98, 190);
+    font-size: 0.9rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 错误状态 */
+.news-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 10px;
+    text-align: center;
+}
+
+.error-icon {
+    font-size: 2rem;
+    color: rgb(202, 98, 190);
+}
+
+.error-text {
+    color: rgb(202, 98, 190);
+    font-size: 0.9rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 动态文字样式 */
+.dynamic-text {
+    position: absolute;
+    bottom: -25px;
+    right: 0;
+    font-size: 0.9rem;
+    color: rgb(202, 98, 190);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    animation: colorChange 5s infinite alternate;
+    z-index: 10;
+}
+
+/* 滚动条样式 */
+.playlist-items::-webkit-scrollbar,
+.news-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.playlist-items::-webkit-scrollbar-track,
+.news-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.playlist-items::-webkit-scrollbar-thumb,
+.news-content::-webkit-scrollbar-thumb {
+    background: rgba(202, 98, 190, 0.3);
+    border-radius: 3px;
+}
+
+.playlist-items::-webkit-scrollbar-thumb:hover,
+.news-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(202, 98, 190, 0.5);
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .bottom-container {
+        flex-direction: column;
+        gap: 30px; /* 在垂直布局时也保持足够间距 */
+    }
+    
+    .music-player-container,
+    .news-container {
+        margin: 0; /* 在垂直布局时移除边距 */
+    }
+    
+    .news-frame {
+        min-height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .bottom-container {
+        width: 95%;
+        gap: 25px;
+    }
+    
+    .music-player-frame,
+    .news-frame {
+        padding: 15px;
+        border-radius: 15px;
+    }
+    
+    .music-header h3,
+    .news-header h3 {
+        font-size: 1rem;
+    }
+    
+    .news-title {
+        font-size: 0.85rem;
+    }
+    
+    .dynamic-text {
+        font-size: 0.8rem;
+        bottom: -20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bottom-container {
+        width: 98%;
+        gap: 20px;
+    }
+    
+    .music-player-frame,
+    .news-frame {
+        padding: 12px;
+        border-radius: 12px;
+    }
+    
+    .news-frame {
+        min-height: 150px;
+    }
+}
+
+/* 独立的留言板容器 */
+.message-board-container {
+    width: 85%;
+    max-width: 1200px;
+    margin: 20px auto 0;
+    display: flex;
+    justify-content: flex-start; /* 左对齐，与音乐播放器对齐 */
+}
+
+/* 留言板样式 - 调整为与新闻框架相同尺寸 */
+.message-board {
+    width: 100%; /* 改为100%宽度 */
+    max-width: none; /* 移除最大宽度限制 */
+    height: 300px; /* 设置与新闻框架相同的高度 */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px; /* 与新闻框架相同的圆角 */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative; /* 添加相对定位 */
+}
+
+/* 留言板光效 - 与新闻框架保持一致 */
+.message-board::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    transform: rotate(30deg);
+    pointer-events: none;
+}
+
+.message-board::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.4),
+        rgba(255, 255, 255, 0.1)
+    );
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* 留言板头部 */
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px; /* 与新闻框架头部相同的内边距 */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.message-header h3 {
+    margin: 0;
+    color: rgb(202, 98, 190);
+    font-size: 1.1rem; /* 与新闻框架标题相同的字体大小 */
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.add-message-btn {
+    background: rgba(202, 98, 190, 0.3);
+    border: 1px solid rgba(202, 98, 190, 0.5);
+    border-radius: 50%;
+    width: 30px; /* 稍大一些的按钮 */
+    height: 30px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 10;
+}
+
+.add-message-btn:hover {
+    background: rgba(202, 98, 190, 0.5);
+    transform: scale(1.1);
+}
+
+/* 留言容器 */
+.messages-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px; /* 与新闻内容相同的内边距 */
+    max-height: none; /* 移除最大高度限制 */
+    position: relative;
+    z-index: 10;
+}
+
+/* 单条留言样式 */
+.message-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px; /* 与新闻项相同的圆角 */
+    padding: 12px; /* 与新闻项相同的内边距 */
+    margin-bottom: 12px; /* 与新闻项相同的间距 */
+    border-left: 3px solid rgba(202, 98, 190, 0.5);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.message-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(5px); /* 与新闻项相同的悬停效果 */
+}
+
+.message-content {
+    color: white;
+    font-size: 0.9rem; /* 与新闻标题相似的字体大小 */
+    line-height: 1.4;
+    margin-bottom: 5px;
+    word-wrap: break-word;
+}
+
+.message-time {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.75rem; /* 与新闻时间相似的字体大小 */
+    text-align: right;
+}
+
+/* 留言输入区域 */
+.message-input-area {
+    padding: 15px 20px; /* 与新闻框架相同的内边距 */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    z-index: 10;
+}
+
+.message-input-area.active {
+    display: flex;
+}
+
+#message-input {
+    width: 100%;
+    height: 80px; /* 更大的输入区域 */
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+    color: white;
+    font-family: 'Microsoft YaHei', sans-serif;
+    resize: none;
+    font-size: 0.9rem;
+}
+
+#message-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#submit-message {
+    background: rgba(202, 98, 190, 0.3);
+    border: 1px solid rgba(202, 98, 190, 0.5);
+    border-radius: 8px;
+    color: white;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Microsoft YaHei', sans-serif;
+    font-size: 0.85rem;
+    align-self: flex-end;
+}
+
+#submit-message:hover {
+    background: rgba(202, 98, 190, 0.5);
+    transform: translateY(-1px);
+}
+
+/* 滚动条样式 */
+.messages-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+    background: rgba(202, 98, 190, 0.3);
+    border-radius: 3px;
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(202, 98, 190, 0.5);
+}
+
+/* 空状态提示 */
+.messages-empty {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    padding: 40px 20px; /* 更大的内边距 */
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .message-board-container {
+        width: 95%;
+        justify-content: center;
+    }
+    
+    .message-board {
+        height: 280px; /* 在小屏幕上稍微减小高度 */
+    }
+}
+
+@media (max-width: 768px) {
+    .message-board-container {
+        width: 95%;
+    }
+    
+    .message-board {
+        height: 250px;
+        border-radius: 15px;
+    }
+    
+    .message-header {
+        padding: 10px 15px;
+    }
+    
+    .message-header h3 {
+        font-size: 1rem;
+    }
+    
+    .message-input-area {
+        padding: 12px 15px;
+    }
+    
+    #message-input {
+        height: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .message-board-container {
+        width: 98%;
+    }
+    
+    .message-board {
+        height: 220px;
+        border-radius: 12px;
+    }
+    
+    .message-item {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .message-content {
+        font-size: 0.85rem;
+    }
+    
+    .message-time {
+        font-size: 0.7rem;
+    }
+}
+
+/* 修复音乐播放器在左侧列中的宽度 */
+.left-column .music-player-container {
+    width: 100%;
+    max-width: none;
+}
+
+/* 确保底部容器中的列正确对齐 */
+.bottom-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 85%;
+    max-width: 1200px;
+    margin: 20px auto 0;
+    gap: 40px;
+    position: relative;
+}
+
+/* 左侧列 */
+.left-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-right: 10px;
+}
+
+/* 新闻容器 */
+.news-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-left: 10px;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .bottom-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .left-column {
+        margin-right: 0;
+        gap: 30px;
+    }
+    
+    .news-container {
+        margin-left: 0;
+    }
+}
+
+/* 新框架样式 - 添加到 news-frame.css 文件末尾 */
+
+/* 左侧列 - 包含音乐播放器和新框架 */
+.left-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-right: 10px;
+}
+
+/* 新框架样式 - 减小高度 */
+.new-frame {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    padding: 15px; /* 减小内边距 */
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 200px; /* 减小最小高度 */
+    height: 200px; /* 设置固定高度 */
+}
+
+/* 新框架头部 - 相应调整 */
+.new-frame-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px; /* 减小间距 */
+    padding-bottom: 8px; /* 减小间距 */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.new-frame-header h3 {
+    margin: 0;
+    color: rgb(202, 98, 190);
+    font-size: 1rem; /* 稍微减小字体 */
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* 新框架内容 - 相应调整 */
+.new-frame-content {
+    position: relative;
+    z-index: 10;
+    color: rgb(202, 98, 190);
+    height: calc(100% - 50px); /* 调整高度计算 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* 减小间距 */
+}
+
+/* 新框架占位内容 - 相应调整 */
+.new-frame-placeholder {
+    text-align: center;
+    color: rgba(202, 98, 190, 0.7);
+    font-size: 0.85rem; /* 减小字体 */
+    padding: 15px; /* 减小内边距 */
+    line-height: 1.4;
+}
+
+/* 新框架的动态文字 - 相应调整 */
+.new-frame .dynamic-text {
+    position: absolute;
+    bottom: 8px; /* 调整位置 */
+    right: 8px;
+    font-size: 0.8rem; /* 减小字体 */
+    color: rgb(202, 98, 190);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    animation: colorChange 5s infinite alternate;
+    z-index: 10;
+    padding: 4px 8px; /* 减小内边距 */
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+    white-space: nowrap;
+}
+
+/* 响应式设计调整 */
+@media (max-width: 768px) {
+    .new-frame {
+        padding: 12px;
+        border-radius: 15px;
+        min-height: 180px; /* 移动端进一步减小高度 */
+        height: 180px;
+    }
+    
+    .new-frame-header {
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+    }
+    
+    .new-frame-header h3 {
+        font-size: 0.95rem;
+    }
+    
+    .new-frame-placeholder {
+        font-size: 0.8rem;
+        padding: 12px;
+    }
+    
+    .new-frame .dynamic-text {
+        font-size: 0.75rem;
+        bottom: 6px;
+        right: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .new-frame {
+        padding: 10px;
+        border-radius: 12px;
+        min-height: 160px; /* 小屏幕进一步减小高度 */
+        height: 160px;
+    }
+    
+    .new-frame-header h3 {
+        font-size: 0.9rem;
+    }
+    
+    .new-frame-placeholder {
+        font-size: 0.75rem;
+        padding: 10px;
+    }
+    
+    .new-frame .dynamic-text {
+        font-size: 0.7rem;
+    }
+}
+
+/* 留言板滚动按钮样式 */
+.scroll-to-top-message,
+.scroll-to-bottom-message {
+    position: absolute;
+    right: 10px;
+    background: rgba(202, 98, 190, 0.3);
+    border: 1px solid rgba(202, 98, 190, 0.5);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    opacity: 0;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.scroll-to-top-message {
+    top: 10px;
+}
+
+.scroll-to-bottom-message {
+    bottom: 10px;
+}
+
+.scroll-to-top-message.visible,
+.scroll-to-bottom-message.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.scroll-to-top-message:hover,
+.scroll-to-bottom-message:hover {
+    background: rgba(202, 98, 190, 0.5);
+    transform: scale(1.1);
+}
+
+/* 确保留言板容器有相对定位 */
+.message-board {
+    position: relative;
+}
