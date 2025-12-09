@@ -255,9 +255,9 @@ class CirnoDialogue {
 
     // 新增：显示隐藏内容（示例）
     showHiddenContent() {
-        // 这里可以添加您想要的隐藏内容
-        // 例如：显示一个特殊的图片、视频或文字
-        
+    // 这里可以添加您想要的隐藏内容
+    // 例如：显示一个特殊的图片、视频或文字
+    
         const hiddenContent = document.createElement('div');
         hiddenContent.className = 'hidden-content';
         hiddenContent.innerHTML = `
@@ -265,8 +265,10 @@ class CirnoDialogue {
                 <h2>隐藏内容解锁！</h2>
                 <p>恭喜你发现了这个秘密功能！</p>
                 <p>这里是只有连续点击20次泉此方才能看到的内容。</p>
-                <img src="photo/H-cirno.jpg" alt="隐藏图片" style="max-width: 200px; border-radius: 10px; margin: 15px 0;">
-                <p>🤫 这是我们的秘密，不要告诉别人哦！</p>
+                <a href="https://store.steampowered.com/app/698780/Doki_Doki_Literature_Club" target="_blank">
+                    <img src="photo/C_Patchouli.jpg" alt="隐藏图片" style="max-width: 200px; border-radius: 10px; margin: 15px 0; cursor: pointer;">
+                </a>
+                <p>不敢想你怎么找到密码的Owo</p>
                 <button class="close-hidden-btn">关闭</button>
             </div>
         `;
