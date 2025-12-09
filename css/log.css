@@ -1,0 +1,625 @@
+/* 日志系统样式 - 移到右上角 */
+.log-system {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* 日志按钮样式 */
+.log-button {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.log-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    animation: none;
+}
+
+/* 呼吸动画 */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(202, 98, 190, 0.3);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* 日志面板样式 - 添加动画效果 */
+.log-panel {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 400px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.log-panel.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* 日志头部动画 */
+.log-header {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.3s ease 0.1s;
+    flex-shrink: 0; /* 防止头部被压缩 */
+}
+
+.log-panel.active .log-header {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.log-header h3 {
+    margin: 0;
+    color: rgb(202, 98, 190);
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.close-log {
+    background: none;
+    border: none;
+    color: rgb(202, 98, 190);
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    transform: scale(0.8);
+}
+
+.log-panel.active .close-log {
+    transform: scale(1);
+}
+
+.close-log:hover {
+    background: rgba(202, 98, 190, 0.2);
+    transform: scale(1.1);
+}
+
+/* 日志内容区域动画 */
+.log-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease 0.2s;
+    overflow: hidden; /* 确保内容不会溢出 */
+}
+
+.log-panel.active .log-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 日志输入区域 */
+.log-input-area {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(10px);
+    opacity: 0;
+    transition: all 0.3s ease 0.25s;
+    flex-shrink: 0; /* 防止输入区域被压缩 */
+}
+
+.log-panel.active .log-input-area {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+#log-input {
+    width: 100%;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+    color: rgb(202, 98, 190);
+    font-family: 'Microsoft YaHei', sans-serif;
+    resize: vertical;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+#log-input:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(202, 98, 190, 0.5);
+    box-shadow: 0 0 0 2px rgba(202, 98, 190, 0.2);
+    transform: translateY(-2px);
+}
+
+#log-input::placeholder {
+    color: rgba(202, 98, 190, 0.6);
+}
+
+#add-log {
+    width: 100%;
+    background: rgba(202, 98, 190, 0.3);
+    border: 1px solid rgba(202, 98, 190, 0.5);
+    border-radius: 8px;
+    padding: 8px 15px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Microsoft YaHei', sans-serif;
+    transform: translateY(5px);
+    opacity: 0;
+}
+
+.log-panel.active #add-log {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.3s;
+}
+
+#add-log:hover {
+    background: rgba(202, 98, 190, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(202, 98, 190, 0.3);
+}
+
+/* 日志列表 - 改进滚动区域 */
+.log-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease 0.35s;
+    /* 改进滚动体验 */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* iOS 平滑滚动 */
+}
+
+.log-panel.active .log-list {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 为日志列表添加滚动提示 */
+.log-list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.log-list::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.1), transparent);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* 当可以向上滚动时显示顶部阴影 */
+.log-list.scrollable-top::before {
+    opacity: 1;
+}
+
+/* 当可以向下滚动时显示底部阴影 */
+.log-list.scrollable-bottom::after {
+    opacity: 1;
+}
+
+.log-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-left: 3px solid rgba(202, 98, 190, 0.5);
+    transition: all 0.3s ease;
+    transform: translateX(-10px);
+    opacity: 0;
+    position: relative;
+}
+
+.log-panel.active .log-item {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* 为每个日志项添加不同的延迟，创建瀑布流效果 */
+.log-item:nth-child(1) { transition-delay: 0.4s; }
+.log-item:nth-child(2) { transition-delay: 0.45s; }
+.log-item:nth-child(3) { transition-delay: 0.5s; }
+.log-item:nth-child(4) { transition-delay: 0.55s; }
+.log-item:nth-child(5) { transition-delay: 0.6s; }
+.log-item:nth-child(6) { transition-delay: 0.65s; }
+.log-item:nth-child(7) { transition-delay: 0.7s; }
+.log-item:nth-child(8) { transition-delay: 0.75s; }
+
+.log-item:last-child {
+    margin-bottom: 0;
+}
+
+.log-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(5px);
+}
+
+.log-time {
+    font-size: 0.7rem;
+    color: rgba(202, 98, 190, 0.7);
+    margin-bottom: 5px;
+}
+
+.log-text {
+    color: rgb(202, 98, 190);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.delete-log {
+    background: rgba(255, 100, 100, 0.3);
+    border: none;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    margin-top: 5px;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.log-item:hover .delete-log {
+    opacity: 1;
+}
+
+.delete-log:hover {
+    background: rgba(255, 100, 100, 0.5);
+}
+
+/* 改进的滚动条样式 */
+.log-list::-webkit-scrollbar {
+    width: 8px; /* 增加滚动条宽度 */
+}
+
+.log-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.log-list::-webkit-scrollbar-thumb {
+    background: rgba(202, 98, 190, 0.4);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.log-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(202, 98, 190, 0.6);
+}
+
+/* Firefox 滚动条样式 */
+.log-list {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(202, 98, 190, 0.4) rgba(255, 255, 255, 0.05);
+}
+
+/* 滚动到顶部/底部按钮 */
+.scroll-to-top,
+.scroll-to-bottom {
+    position: absolute;
+    right: 10px;
+    background: rgba(202, 98, 190, 0.3);
+    border: 1px solid rgba(202, 98, 190, 0.5);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    opacity: 0;
+    z-index: 5;
+}
+
+.scroll-to-top {
+    top: 10px;
+}
+
+.scroll-to-bottom {
+    bottom: 10px;
+}
+
+.scroll-to-top.visible,
+.scroll-to-bottom.visible {
+    opacity: 1;
+}
+
+.scroll-to-top:hover,
+.scroll-to-bottom:hover {
+    background: rgba(202, 98, 190, 0.5);
+    transform: scale(1.1);
+}
+
+/* 新日志脉冲动画 */
+@keyframes newLogPulse {
+    0% {
+        background: rgba(202, 98, 190, 0.3);
+        transform: scale(1);
+    }
+    50% {
+        background: rgba(202, 98, 190, 0.5);
+        transform: scale(1.02);
+    }
+    100% {
+        background: rgba(255, 255, 255, 0.1);
+        transform: scale(1);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .log-system {
+        top: 15px;
+        right: 15px;
+    }
+    
+    .log-panel {
+        width: 350px;
+        height: 450px;
+    }
+}
+
+@media (max-width: 480px) {
+    .log-system {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .log-button {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+    
+    .log-panel {
+        width: 300px;
+        height: 400px;
+        right: -10px;
+    }
+    
+    .log-header h3 {
+        font-size: 1rem;
+    }
+    
+    .log-list::-webkit-scrollbar {
+        width: 6px; /* 在移动设备上减小滚动条宽度 */
+    }
+}
+
+/* 新日志脉冲动画 */
+@keyframes newLogPulse {
+    0% {
+        background: rgba(202, 98, 190, 0.3);
+        transform: scale(1);
+    }
+    50% {
+        background: rgba(202, 98, 190, 0.5);
+        transform: scale(1.02);
+    }
+    100% {
+        background: rgba(255, 255, 255, 0.1);
+        transform: scale(1);
+    }
+}
+
+/* 暗色模式切换按钮 */
+.dark-mode-toggle {
+    position: fixed;
+    top: 90px; /* 在日志按钮下方 */
+    right: 20px;
+    z-index: 1000;
+}
+
+.dark-mode-button {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.dark-mode-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 涟漪动画效果 */
+.dark-mode-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    background: rgba(202, 98, 190, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: 1;
+}
+
+.dark-mode-toggle.active .dark-mode-ripple {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 1;
+}
+
+/* 暗色模式样式 */
+body.dark-mode {
+    /* 背景图片在JS中设置，这里只设置其他样式 */
+}
+
+body.dark-mode .glass-frame,
+body.dark-mode .music-player-frame,
+body.dark-mode .news-frame,
+body.dark-mode .message-board,
+body.dark-mode .new-frame,
+body.dark-mode .custom-image-frame {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+body.dark-mode .weather-widget,
+body.dark-mode .log-panel,
+body.dark-mode .playlist {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+body.dark-mode .time,
+body.dark-mode .date,
+body.dark-mode .weather-temp,
+body.dark-mode .weather-desc,
+body.dark-mode .weather-location,
+body.dark-mode .song-title,
+body.dark-mode .news-title,
+body.dark-mode .message-content,
+body.dark-mode .new-frame-content,
+body.dark-mode .icon-text,
+body.dark-mode .dynamic-text {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode .log-text,
+body.dark-mode .log-time {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+body.dark-mode .log-button,
+body.dark-mode .dark-mode-button {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+body.dark-mode .log-button:hover,
+body.dark-mode .dark-mode-button:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* 背景图片过渡效果 */
+body {
+    transition: background-image 0.5s ease-in-out;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .dark-mode-toggle {
+        top: 85px;
+        right: 15px;
+    }
+    
+    .dark-mode-button {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+    
+    .dark-mode-ripple {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dark-mode-toggle {
+        top: 80px;
+        right: 10px;
+    }
+    
+    .dark-mode-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .dark-mode-ripple {
+        width: 40px;
+        height: 40px;
+    }
+}
